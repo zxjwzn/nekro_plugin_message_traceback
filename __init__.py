@@ -66,8 +66,8 @@ async def message_traceback(_ctx: AgentCtx, chatmessage: ChatMessage, args: str)
     logger.info(f"消息回溯完成，删除了 {count} 条消息")
     await _ctx.ms.send_text(_ctx.chat_key, message=f"已回溯到上一条消息，期间的 {count} 条对话已被删除", ctx=_ctx, record=False)
     bot_message_summary = (
-        last_bot_message.content_text[:10] + "..."
-        if len(last_bot_message.content_text) > 10
+        last_bot_message.content_text[:100] + "..."
+        if len(last_bot_message.content_text) > 100
         else last_bot_message.content_text
     )
     status_message = f"当前状态\nBOT消息:{bot_message_summary}\n等待用户消息..."
